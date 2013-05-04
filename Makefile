@@ -7,10 +7,12 @@ TARGET = bin/
 SRC = source/
 
 zad1:
-	${CC} ${CFLAGS} -c ${SRC}zad1/main.c -o ${TARGET}zad1/main.o
+	${CC} -c ${SRC}zad1/func.c ${TARGET}zad1/func.o
+	ar rcs libhello.a libhello.o
+	${CC} ${CFLAGS} ${SRC}zad1/main.c -o ${TARGET}zad1/main.o
  
 all:
-	zad1
+	zad1 break;
 	
 break:
 	@echo "------------------------------------------------------------"
