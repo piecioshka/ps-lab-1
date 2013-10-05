@@ -8,21 +8,11 @@
 /**
  * Print very simple information about User
  */
-void printUser() {
-  char * l = getlogin();
-  if (l) {
-    printf("getlogin: %s\n", l);
-  }
-  int u = getuid();
-  if (u) {
-    printf("getuid: %i\n", u);
-  }
-
-  struct passwd * p = getpwent();
+void printUser(char * login) {
+  struct passwd * p = getpwnam(login);
   if (p) {
     printf("passwd->pw_uid: %i\n", p->pw_uid);
-    printf("passwd->pw_gid: %i\n", p->pw_gid);
-    printf("passwd->pw_expire: %lu\n", p->pw_expire);
+    printf("passwd->pw_name: %s\n", p->pw_name);
   }
 }
 
@@ -46,15 +36,22 @@ void printSystem() {
 }
 
 /**
+ * Print message if user doesn't set any option.
+ */
+void printZeroOption() {
+    printf("ERR: nie podano zadnej opcji\n");
+}
+
+/**
  * Print message for not supported option.
  */
 void printUnrecognize() {
-  fprintf(stderr, "ERR: nie rozpoznana opcja\n");
+  fprintf(stderr, "ERR: nierozpoznana opcja\n");
 }
 
 int main (int argc, char * argv[]) {
   /* availability options */
-  char * opts = "su";
+  char * opts = "su:";
   /* processed option */
   int c;
   /* exit application status */
@@ -62,7 +59,7 @@ int main (int argc, char * argv[]) {
 
   /* check if define more than one option */
   if (argc < 2) {
-    printf("ERR: nie podano żadnej opcji\n");
+    printZeroOption();
   } else {
     /* iteration by each of option */
     while ((c = getopt(argc, argv, opts)) != -1) {
@@ -70,7 +67,7 @@ int main (int argc, char * argv[]) {
         /* for 's' print information about system */
         case 's': printSystem(); break;
         /* for 'u' print user profile */
-        case 'u': printUser(); break;
+        case 'u': printUser(optarg); break;
         /* for unrecognized option */
         case '?':
         default:
