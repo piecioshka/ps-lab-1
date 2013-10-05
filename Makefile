@@ -7,6 +7,7 @@ Z1 = zad1/
 Z2 = zad2/
 Z3 = zad3/
 Z4 = zad4/
+Z5 = zad5/
 
 zad1:
 	${CC} ${CFLAGS} ${SRC}${Z1}main.c ${SRC}${Z1}func.c -o ${TARGET}${Z1}main.o
@@ -19,4 +20,7 @@ zad3:
 
 zad4:
 	${CC} ${CFLAGS} ${SRC}${Z4}main.c -o ${TARGET}${Z4}main.o
+
+zad5:
+	${CC} ${CFLAGS} ${SRC}${Z5}main.c -o ${TARGET}${Z5}main.o
 
