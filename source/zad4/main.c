@@ -55,7 +55,7 @@ int main (int argc, char * argv[]) {
   /* processed option */
   int c;
   /* exit application status */
-  int status = 0;
+  int status = 1;
 
   /* check if define more than one option */
   if (argc < 2) {
@@ -72,7 +72,7 @@ int main (int argc, char * argv[]) {
         case '?':
         default:
           printUnrecognize();
-          status = 1;
+          status = -1;
       }
     }
   }
