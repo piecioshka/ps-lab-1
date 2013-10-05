@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "func.h"
 
 int main (int argc, char * argv[]) {
   printf("Uruchomiony program: %s\n", argv[0]);
