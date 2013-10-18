@@ -8,6 +8,7 @@ Z2 = zad2/
 Z3 = zad3/
 Z4 = zad4/
 Z5 = zad5/
+Z11 = zad11/
 
 zad1:
 	${CC} ${CFLAGS} ${SRC}${Z1}main.c ${SRC}${Z1}func.c -o ${TARGET}${Z1}main.o
@@ -23,4 +24,7 @@ zad4:
 
 zad5:
 	${CC} ${CFLAGS} ${SRC}${Z5}main.c -o ${TARGET}${Z5}main.o
+
+zad11:
+	${CC} ${CFLAGS} ${SRC}${Z11}main.c -o ${TARGET}${Z11}main.o
 
