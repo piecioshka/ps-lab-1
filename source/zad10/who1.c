@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <utmp.h>
 #include <fcntl.h>
@@ -12,6 +13,9 @@
  * *note* these sizes should not be hardwired
  */
 void show_info(struct utmp *utbufp) {
+    if (strlen(utbufp->ut_name) == 0) return;
+    if (strlen(utbufp->ut_host) == 0) return;
+
     printf("%-8.8s", utbufp->ut_name); /* the logname */
     printf(" "); /* a space */
     printf("%-8.8s", utbufp->ut_line); /* the tty */
