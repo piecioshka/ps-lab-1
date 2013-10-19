@@ -4,8 +4,14 @@
 #include <utmp.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <time.h>
 
 #define SHOWHOST /* include remote machine on output */
+
+char * printTime(timestamp) {
+    struct tm * timeStruct;
+    return strptime( timestamp, "%C%y-%m-%dT%H:%M:%S", tm );
+}
 
 /*
  *  show info()
@@ -21,6 +27,7 @@ void show_info(struct utmp *utbufp) {
     printf("%-8.8s", utbufp->ut_line); /* the tty */
     printf(" "); /* a space */
     printf("%10ld", utbufp->ut_time); /* login time */
+    printf("%s", printTime((int) utbufp->ut_time)); /* login time */
     printf(" "); /* a space */
 #ifdef SHOWHOST
     printf("(%s)", utbufp->ut_host); /* the host */
