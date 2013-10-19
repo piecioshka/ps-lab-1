@@ -9,8 +9,8 @@
 #define SHOWHOST /* include remote machine on output */
 
 char * printTime(timestamp) {
-    struct tm * timeStruct;
-    return strptime( timestamp, "%C%y-%m-%dT%H:%M:%S", tm );
+    struct tm * tm;
+    return strptime((char *) timestamp, "%C%y-%m-%dT%H:%M:%S", tm );
 }
 
 /*
