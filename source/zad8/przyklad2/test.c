@@ -11,16 +11,17 @@ int main() {
   initRand();
 
   isum = 0L;
-  for (i = 0 ; i < ITERATIONS ; i++) {
+  for (i = 0; i < ITERATIONS; i++) {
     isum += getRand(10);
   }
-  printf( "getRand() Average %d\n", (int)(isum / ITERATIONS) );
+  printf("getRand() Average %d\n", (int) (isum / ITERATIONS));
 
   fsum = 0.0;
-  for (i = 0 ; i < ITERATIONS ; i++) {
+  for (i = 0; i < ITERATIONS; i++) {
     fsum += getSRand();
   }
-  printf( "getSRand() Average %f\n", (fsum / (float)ITERATIONS) );
+  printf("getSRand() Average %f\n", (fsum / (float) ITERATIONS));
 
   return 0;
 }
+
