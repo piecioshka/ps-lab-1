@@ -10,7 +10,7 @@
 
 char * printTime(timestamp) {
     struct tm * tm;
-    return strptime((char *) timestamp, "%C%y-%m-%dT%H:%M:%S", tm );
+    return (char *) strptime(timestamp, "%C%y-%m-%dT%H:%M:%S", tm);
 }
 
 /*
