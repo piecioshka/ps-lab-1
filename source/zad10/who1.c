@@ -8,12 +8,14 @@
 
 #define SHOWHOST /* include remote machine on output */
 
-char * printTime(char * timestamp) {
-  struct tm * tm;
-  char * timeText;
-  strptime(timestamp, "%C%y-%m-%dT%H:%M:%S", tm);
-  sprintf(timeText, "%s", timestamp);
-  return timeText;
+char * printTime(int timestamp) {
+  struct tm tm;
+  char buffer[255];
+  char time_s[255];
+  sprintf(time_s, "%i", timestamp);
+  strptime(time_s, "%s", &tm); 
+  strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M", &tm);
+  return buffer;
 }
 
 /*!
@@ -23,16 +25,15 @@ char * printTime(char * timestamp) {
  */
 void show_info(struct utmp *utbufp) {
   if (strlen(utbufp->ut_name) == 0) return;
+  if (strlen(utbufp->ut_line) == 1) return;
   if (strlen(utbufp->ut_host) == 0) return;
 
   printf("%-8.8s", utbufp->ut_name); /* the logname */
   printf(" "); /* a space */
   printf("%-8.8s", utbufp->ut_line); /* the tty */
-  printf(" "); /* a space */
-  printf("%10ld", utbufp->ut_time); /* login time */
-  char * timestamp;
-  sprintf(timestamp, "%10ld", utbufp->ut_time);
-  printf("%s", printTime(timestamp)); /* login time */
+  printf("\t"); /* a space */
+  /* printf("%10ld", utbufp->ut_time); */ /* login time */
+  printf("%s", printTime(utbufp->ut_time)); /* login time */
   printf(" "); /* a space */
 #ifdef SHOWHOST
   printf("(%s)", utbufp->ut_host); /* the host */
@@ -44,8 +45,6 @@ int main() {
   struct utmp current_record; /* read info into here */
   int utmpfd; /* read from this descriptor */
   int reclen = sizeof(current_record);
-
-  /* printf("read from file: %s\n", UTMP_FILE); */
 
   if ((utmpfd = open(UTMP_FILE, O_RDONLY)) == -1) {
     perror(UTMP_FILE); /* UTMP_FILE is in utmp.h */
