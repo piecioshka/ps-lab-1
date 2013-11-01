@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include "randapi.h"
 
-#define ITERATIONS	1000000L
+#define ITERATIONS 1000000L
 
 int main() {
-  long  i;
-  long  isum;
+  long i;
+  long isum;
   float fsum;
 
   initRand();

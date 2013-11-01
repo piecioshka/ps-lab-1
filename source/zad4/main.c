@@ -39,7 +39,7 @@ void printSystem() {
  * Print message if user doesn't set any option.
  */
 void printZeroOption() {
-    printf("ERR: nie podano zadnej opcji\n");
+  printf("ERR: nie podano zadnej opcji\n");
 }
 
 /**

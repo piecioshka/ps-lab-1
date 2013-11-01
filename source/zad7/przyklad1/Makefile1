@@ -1,8 +1,8 @@
-zad6a:	main.o func.o
+zad6a: main.o func.o
 	gcc -o zad6a main.o func.o
 
 main.o: main.c func.h
-	gcc -c -Wall 	main.c
+	gcc -c -Wall  main.c
 
 func.o: func.c func.h
 	gcc -c -Wall func.c

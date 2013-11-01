@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include "randapi.h"
-#define ITERATIONS	1000000L
+#define ITERATIONS 1000000L
 
-int main()
-{
-  long  i;
-  long  isum;
+int main() {
+  long i;
+  long isum;
   float fsum;
 
   initRand();
@@ -14,14 +13,14 @@ int main()
   for (i = 0 ; i < ITERATIONS ; i++) {
     isum += getRand(10);
   }
-  printf( "getRand() Average %d\n", (int)(isum / ITERATIONS) );
+  printf( "getRand() Average %d\n", (int) (isum / ITERATIONS) );
 
   fsum = 0.0;
   for (i = 0 ; i < ITERATIONS ; i++) {
     fsum += getSRand();
   }
 
-  printf( "getSRand() Average %f\n", (fsum / (float)ITERATIONS) );
+  printf( "getSRand() Average %f\n", (fsum / (float) ITERATIONS) );
 
   return;
 }

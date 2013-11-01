@@ -1,8 +1,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-void initRand()
-{
+void initRand() {
   time_t seed;
   seed = time(NULL);
   srand( seed );
