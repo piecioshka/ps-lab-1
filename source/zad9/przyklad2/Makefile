@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -Werror -pedantic -pedantic-errors
+CFLAGS=-Wall -Werror -pedantic -pedantic-errors -fPIC
 
 zad9b: test.o initapi.o librandapi.so
 	${CC} -L /Users/piecioshka/projects/ps-lab-1/source/zad9/przyklad2/ ${CFLAGS} -o zad9b test.o initapi.o -lrandapi
