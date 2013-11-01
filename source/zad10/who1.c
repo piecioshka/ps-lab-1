@@ -8,9 +8,13 @@
 
 #define SHOWHOST /* include remote machine on output */
 
-char * printTime(int timestamp) {
+/*!
+ * show_time()
+ * display human redable date time
+ */
+char * show_time(int timestamp) {
   struct tm tm;
-  char buffer[255];
+  static char buffer[255];
   char time_s[255];
   sprintf(time_s, "%i", timestamp);
   strptime(time_s, "%s", &tm); 
@@ -33,7 +37,7 @@ void show_info(struct utmp *utbufp) {
   printf("%-8.8s", utbufp->ut_line); /* the tty */
   printf("\t"); /* a space */
   /* printf("%10ld", utbufp->ut_time); */ /* login time */
-  printf("%s", printTime(utbufp->ut_time)); /* login time */
+  printf("%s", show_time(utbufp->ut_time)); /* login time */
   printf(" "); /* a space */
 #ifdef SHOWHOST
   printf("(%s)", utbufp->ut_host); /* the host */
@@ -41,18 +45,36 @@ void show_info(struct utmp *utbufp) {
   printf("\n"); /* newline */
 }
 
-int main() {
+int main(int argc, char * argv[]) {
   struct utmp current_record; /* read info into here */
   int utmpfd; /* read from this descriptor */
   int reclen = sizeof(current_record);
+  char * login = getlogin();
 
   if ((utmpfd = open(UTMP_FILE, O_RDONLY)) == -1) {
     perror(UTMP_FILE); /* UTMP_FILE is in utmp.h */
     exit(1);
   }
 
-  while (read(utmpfd, &current_record, reclen) == reclen) {
-    show_info(&current_record);
+  if (argc < 2) {
+    while (read(utmpfd, &current_record, reclen) == reclen) {
+      show_info(&current_record);
+    }
+  } else {
+    /* if next opts are './who.o am i' we print only single line */
+    if (strcmp(argv[1], "am") == 0 && strcmp(argv[2], "i") == 0) {
+      /* analyze all contents in UTMP_FILE */
+      while (read(utmpfd, &current_record, reclen) == reclen) {
+        /* compare each record name with current user login name */
+        if (strcmp(current_record.ut_name, login) == 0) {
+          /* print info about logged user */
+          show_info(&current_record);
+          /* exit from loop, becouse printing only one record */
+          /* the same situation is in '$ who am i' command. */
+          break;
+        }
+      }
+    }
   }
   close(utmpfd);
   return 0; /* went ok */
