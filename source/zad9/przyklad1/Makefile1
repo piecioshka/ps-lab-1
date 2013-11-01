@@ -1,5 +1,5 @@
-zad7a: main.o func.o
-	gcc -o zad7a main.o func.o
+zad9a: main.o func.o
+	gcc -o zad9a main.o func.o
 
 main.o: main.c func.h
 	gcc -c -Wall  main.c
@@ -8,5 +8,5 @@ func.o: func.c func.h
 	gcc -c -Wall func.c
 
 clean:
-	rm *.o zad7a
+	rm *.o zad9a
 

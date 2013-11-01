@@ -1,8 +1,8 @@
 CC=gcc
 CFLAGS=-Wall -Werror -pedantic -pedantic-errors
 
-zad6b: test.o initapi.o randapi.o
-	${CC} ${CFLAGS} -o zad6b test.o initapi.o randapi.o
+zad7b: test.o initapi.o randapi.o
+	${CC} ${CFLAGS} -o zad7b test.o initapi.o randapi.o
 
 test.o: randapi.h
 	${CC} ${CFLAGS} -c test.c
@@ -14,5 +14,5 @@ randapi.o: randapi.c
 	${CC} ${CFLAGS} -c randapi.c
 
 clean:
-	rm *.o zad6b
+	rm *.o zad7b
 

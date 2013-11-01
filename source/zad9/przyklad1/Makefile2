@@ -4,13 +4,13 @@ OBJ_FILES=main.o func.o
 CFLAGS=-Wall -Werror -pedantic -pedantic-errors
 LDFLAGS=
 
-zad7a: $(OBJ_FILES)
+zad9a: $(OBJ_FILES)
 	gcc $(LDFLAGS) -o $@ $(OBJ_FILES)
 
 %.o:%.c
 	gcc $(CFLAGS) -c $<
 
 clean:
-	rm *.o zad7a
+	rm *.o zad9a
 
 
