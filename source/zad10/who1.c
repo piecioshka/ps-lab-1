@@ -61,6 +61,7 @@ int main(int argc, char * argv[]) {
       show_info(&current_record);
     }
   } else {
+    /* check if set 3 params, for 2 are ignore */
     if (argc < 3) {
       return 0;
     }
