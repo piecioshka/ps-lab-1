@@ -1,8 +1,8 @@
 CC=gcc
 CFLAGS=-Wall -Werror -pedantic -pedantic-errors -fPIC
 
-zad9b: test.o initapi.o librandapi.so
-	${CC} -L /Users/piecioshka/projects/ps-lab-1/source/zad9/przyklad2/ ${CFLAGS} -o zad9b test.o initapi.o -lrandapi
+zad9: test.o initapi.o librandapi.so
+	${CC} -L /Users/piecioshka/projects/ps-lab-1/source/zad9/przyklad2/ ${CFLAGS} -o zad9 test.o initapi.o -lrandapi
 
 test.o: randapi.h
 	${CC} ${CFLAGS} -c test.c
@@ -17,5 +17,5 @@ randapi.o: randapi.c
 	${CC} ${CFLAGS} -c randapi.c
 
 clean:
-	rm *.o *.so zad9b
+	rm *.o *.so zad9
 

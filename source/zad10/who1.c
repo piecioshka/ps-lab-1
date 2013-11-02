@@ -61,6 +61,9 @@ int main(int argc, char * argv[]) {
       show_info(&current_record);
     }
   } else {
+    if (argc < 3) {
+      return 0;
+    }
     /* if next opts are './who.o am i' we print only single line */
     if (strcmp(argv[1], "am") == 0 && strcmp(argv[2], "i") == 0) {
       /* analyze all contents in UTMP_FILE */
