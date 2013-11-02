@@ -17,7 +17,7 @@ char * show_time(int timestamp) {
   static char buffer[255];
   char time_s[255];
   sprintf(time_s, "%i", timestamp);
-  strptime(time_s, "%s", &tm); 
+  strptime(time_s, "%s", &tm);
   strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M", &tm);
   return buffer;
 }
