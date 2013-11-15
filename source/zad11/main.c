@@ -2,10 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
-
-int random_between(int min, int max) {
-  return rand() % (max - min + 1) + min;
-}
+#include "../lib/libutils.c"
 
 void test_func() {
   int rand = random_between(1, 5);
