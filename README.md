@@ -1,1 +1,1 @@
-Exercises to first lesson for subject: `Programowanie systemowe`.
+Exercises to first and second lesson for subject: `Programowanie systemowe`.
